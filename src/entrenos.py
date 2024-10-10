@@ -68,4 +68,37 @@ def suma_calorias(entrenos:list[Entreno], fecha1:str, fecha2:str)->int:
 print("Calorias quemadas: "+ str(suma_calorias(lee_entrenos("data/entrenos.csv"), "1/1/2024 8:00", "31/12/2024 8:00")))
 
 
+def suma_calorias(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int:
+    calorias_quemadas = 0
+    if fecha1 == None or fecha2 == None:
+        raise ValueError("Parametro Incorrecto")
+    else:
+        for e in entrenos:
+            if(fecha1 >= e.fechahora <= fecha2):
+                calorias_quemadas = calorias_quemadas + int(e.calorias)
+        return calorias_quemadas
+
+print("Calorias quemadas2: "+ str(suma_calorias(lee_entrenos("data/entrenos.csv"), datetime(2024,1,1,8,0),
+                                                datetime(2024,12,1,8,0))))
+
+def suma_calorias(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int:
+    calorias_quemadas = 0
     
+    if fecha1 == None or fecha2 == None:
+        raise ValueError("Parametro Incorrecto")
+    
+    f_i = ""
+    f_fin = ""
+    if fecha1 is None:
+        f_i = datetime(1,1,1,0,0)
+
+    if fecha2 is None:
+        f_fin = datetime(9999,12,31,0,0)
+    
+    for e in entrenos:
+        if(f_i >= e.fechahora <= f_fin):
+            calorias_quemadas = calorias_quemadas + int(e.calorias)
+    return calorias_quemadas
+
+print("Calorias quemadas3: "+ str(suma_calorias(lee_entrenos("data/entrenos.csv"), datetime(2024,1,1,8,0),
+                                                datetime(2024,12,1,8,0))))
