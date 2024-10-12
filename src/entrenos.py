@@ -2,7 +2,6 @@ from collections import namedtuple
 import csv
 from datetime import datetime
 
-
 Entreno = namedtuple('Entreno', 'tipo, fechahora, ubicacion, duracion, calorias, distancia, frecuencia, compartido')
 
 def lee_entrenos(rutaCSV:str)->list[Entreno]:
@@ -40,7 +39,6 @@ def tipo_entrenos(entrenos:list[Entreno]) -> list[str]:
             tipos.add(e.tipo)
     print(tipos)
     return tipos
-
 
 tipo_entrenos(lee_entrenos("data/entrenos.csv"))
 
