@@ -27,7 +27,7 @@ def lee_entrenos(rutaCSV:str)->list[Entreno]:
                                distancia, 
                                frecuencia, 
                                compartido))
-        print(res)
+        #print(res)
     return res
     
 lee_entrenos("data/entrenos.csv")
@@ -37,7 +37,7 @@ def tipo_entrenos(entrenos:list[Entreno]) -> list[str]:
     for e in entrenos:
         if(e.tipo not in tipos):
             tipos.add(e.tipo)
-    print(tipos)
+    #print(tipos)
     return tipos
 
 tipo_entrenos(lee_entrenos("data/entrenos.csv"))
@@ -66,7 +66,7 @@ def suma_calorias(entrenos:list[Entreno], fecha1:str, fecha2:str)->int:
 print("Calorias quemadas: "+ str(suma_calorias(lee_entrenos("data/entrenos.csv"), "1/1/2024 8:00", "31/12/2024 8:00")))
 
 
-def suma_calorias(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int:
+def suma_calorias2(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int:
     calorias_quemadas = 0
     if fecha1 == None or fecha2 == None:
         raise ValueError("Parametro Incorrecto")
@@ -76,17 +76,16 @@ def suma_calorias(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int
                 calorias_quemadas = calorias_quemadas + int(e.calorias)
         return calorias_quemadas
 
-print("Calorias quemadas2: "+ str(suma_calorias(lee_entrenos("data/entrenos.csv"), datetime(2024,1,1,8,0),
-                                                datetime(2024,12,1,8,0))))
+print("Calorias quemadas2: " + str(suma_calorias2(lee_entrenos("data/entrenos.csv"), datetime(2024,1,1,8,0), datetime(2024,12,1,8,0))))
 
-def suma_calorias(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int:
+def suma_calorias3(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int:
     calorias_quemadas = 0
     
     if fecha1 == None or fecha2 == None:
         raise ValueError("Parametro Incorrecto")
     
-    f_i = ""
-    f_fin = ""
+    f_i = fecha1
+    f_fin = fecha2
     if fecha1 is None:
         f_i = datetime(1,1,1,0,0)
 
@@ -98,5 +97,4 @@ def suma_calorias(entrenos:list[Entreno], fecha1:datetime, fecha2:datetime)->int
             calorias_quemadas = calorias_quemadas + int(e.calorias)
     return calorias_quemadas
 
-print("Calorias quemadas3: "+ str(suma_calorias(lee_entrenos("data/entrenos.csv"), datetime(2024,1,1,8,0),
-                                                datetime(2024,12,1,8,0))))
+print("Calorias quemadas3: " + str(suma_calorias3(lee_entrenos("data/entrenos.csv"), datetime(2024,1,1,8,0), datetime(2024,12,1,8,0))))
